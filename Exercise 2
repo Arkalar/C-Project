@@ -1,0 +1,143 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+
+// Prototype for left truncation (truncateLeft) function
+// ...INSERT PROTOTYPE HERE...
+
+vector<int> truncateLeft(int num) {
+    vector<int> t(5);
+    double a, p;
+    for (double i=1; i<=6; i++){
+        a=0; // reset a
+        p=pow(10,(6-i)); // asign vaule for 10^n
+        for (int j=num; j>p;j=j-p){ // subtract 10^n from number
+            a++; // count how many times 10^n subtracted
+        }
+        t[i-1]=num-a*p;
+        
+    }
+    return t;
+}
+
+// Prototype for right truncation (truncateRight) function
+// ...INSERT PROTOTYPE HERE...
+
+vector<int> truncateRight(int num){
+vector<int> t(7);
+
+int i;
+
+for(i=0;i<=7;i++){
+	num=num/10;
+	t[i]=num;
+}	 
+
+return t;
+
+}
+
+// Prototype for prime test (isPrime) function
+// ...INSERT PROTOTYPE HERE...
+
+bool isPrime(int i) {
+int q;
+int j=1;
+int halfnum=i/2;
+bool prime=1;
+
+while (prime==1 && j<i) {	   	   //carry on
+
+j++;
+prime=i%j;			//gives 1 if remainder
+//cout<<prime<<"  "<<j<<"  "<<i<<endl;
+}
+
+if (j==i){
+q=1;
+}								//it is prime
+else{
+q=0;
+}								//it is not prime
+
+return q;
+}
+/*
+int main( ) {
+
+   // Test harness for truncation and prime test
+   int num = 12345678;
+   vector<int> truncated;
+   truncated = truncateLeft( num );
+   cout << endl << "The left truncations of " << num << " are ";
+   for ( int i = 0 ; i < truncated.size() ; ++i )
+   {
+      cout << truncated[i] << " ";
+   } 
+   
+   truncated = truncateRight( num );
+   cout << endl << "   ....and the right truncations are " ;
+   for ( int i = 0 ; i < truncated.size() ; ++i )
+   {
+      cout << truncated[i] << " ";
+   }
+   
+   cout << endl << endl << "The following numbers are prime: ";
+   for ( int i = 2 ; i < 50 ; ++i )
+   {
+      if ( isPrime(i)==1 )
+      {
+         cout << i << " ";
+      }
+   } 
+   
+   cout << endl << endl;
+
+return 0;
+
+}
+*/
+int main( ) {
+   // Code to determine the six-digit truncatable prime
+   for ( int num = 100000 ; num < 1000000 ; ++num )
+   {
+      if ( isPrime(num) )
+      {
+         bool truncatable = true;
+         vector<int> lefty = truncateLeft(num);
+         for ( int i = 0 ; i < lefty.size() ; ++i )
+         {
+            if ( !isPrime( lefty[i] ) )
+               truncatable = false;
+         }
+         vector<int> righty = truncateRight(num);
+         for ( int i = 0 ; i < righty.size() ; ++i )
+         {
+            if ( !isPrime( righty[i] ) )
+               truncatable = false;
+         }
+         if ( truncatable )
+            cout << "The number " << num << 
+                    " is a fully truncatable prime" << endl << endl;
+      }
+   }
+
+return 0;
+
+}
+
+
+// Definition of left truncation (truncateLeft) function
+// ...INSERT FUNCTION HERE...
+
+
+// Definition of right truncation (truncateRight) function
+// ...INSERT FUNCTION HERE...
+
+
+// Definition of prime test (isPrime) function
+// ...INSERT FUNCTION HERE...
+
+
