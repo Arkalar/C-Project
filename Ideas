@@ -1,0 +1,7 @@
+Blackjack:      Deck of cards with 52 cards
+                A random number generator to select different cards with equal probability
+                A way to remember which cards have been used and which havent
+                A deck analyser that automatically adds a new deck after a number have been removed
+                A computer which analyses winning hand
+                A bank with scores and a betting system
+                A leaderboard and score system
